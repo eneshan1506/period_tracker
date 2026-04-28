@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" role="img" aria-label="Cycle Bloom icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffe4ef"/>
+      <stop offset="100%" stop-color="#e9d5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="42" fill="url(#bg)"/>
+  <circle cx="96" cy="96" r="54" fill="#ffffff" opacity="0.82"/>
+  <path d="M96 52c16 20 30 35 30 52a30 30 0 1 1-60 0c0-17 14-32 30-52Z" fill="#f43f5e"/>
+</svg>
