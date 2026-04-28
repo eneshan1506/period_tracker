@@ -42,6 +42,10 @@ Open `http://localhost:3000` in your browser.
 pnpm build
 ```
 
+## Live Demo
+
+https://period-tracker-plum.vercel.app/
+
 ## Disclaimer
 
 Predictions are estimates and not medical advice.
