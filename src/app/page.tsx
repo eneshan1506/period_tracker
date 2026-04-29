@@ -370,9 +370,9 @@ export default function Home() {
   const isTodayOvulationDay = ovulation ? sameDate(ovulation, today) : false;
   const isTodayFertileWindowDay = fertileIntensityByKey.has(todayKey);
 
-  let todayStatusText = `${t.statusLowFertility} 🌿`;
-  let todayStatusStyle = "border-violet-100 bg-violet-50/70 text-violet-900";
-  let todayMotivation = t.motivationLowFertility;
+  let todayStatusText: string = `${t.statusLowFertility} 🌿`;
+  let todayStatusStyle: string = "border-violet-100 bg-violet-50/70 text-violet-900";
+  let todayMotivation: string = t.motivationLowFertility;
 
   if (isTodayPeriodDay) {
     todayStatusText = `${t.statusPeriod} 🩸`;
