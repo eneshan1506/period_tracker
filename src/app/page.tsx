@@ -424,7 +424,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-rose-100 via-violet-100 to-amber-50 px-4 py-6">
-      <main className="relative w-full max-w-md rounded-3xl border border-white/70 bg-gradient-to-b from-white/95 to-rose-50/85 p-4 pb-24 shadow-xl backdrop-blur sm:p-6 sm:pb-24">
+      <main className="relative w-full max-w-md overflow-x-hidden rounded-3xl border border-white/70 bg-gradient-to-b from-white/95 to-rose-50/85 p-4 pb-24 shadow-xl backdrop-blur sm:p-6 sm:pb-24">
         <header className="relative mb-4 flex h-[60px] items-center justify-between rounded-2xl border border-white/80 bg-white/70 px-3 shadow-sm">
           <p className="bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-base font-semibold text-transparent">
             Cycle Bloom 🌸
@@ -441,9 +441,9 @@ export default function Home() {
           <p className="mt-2 text-xs text-violet-700/80">{todayMotivation}</p>
         </section>
 
-        <section className="mt-4 space-y-4 rounded-2xl border border-white/80 bg-white/85 p-5 text-center shadow-sm sm:space-y-5 sm:p-6">
-          <div>
-            <label htmlFor="startDate" className="mb-1 block text-sm font-medium text-zinc-700">
+        <section className="mt-4 space-y-5 rounded-2xl border border-white/80 bg-white/85 p-4 text-center shadow-sm sm:space-y-5 sm:p-6">
+          <div className="space-y-2">
+            <label htmlFor="startDate" className="block text-center text-sm font-medium text-zinc-700">
               {t.labelStartDate}
             </label>
             <input
@@ -451,12 +451,12 @@ export default function Home() {
               type="date"
               value={startDate}
               onChange={(event) => setStartDate(event.target.value)}
-              className="w-full rounded-xl border border-rose-200 bg-white px-3 py-2.5 text-zinc-900 outline-none transition duration-150 ease-out focus:border-rose-300 focus-visible:ring-2 focus-visible:ring-rose-200 focus-visible:ring-offset-1"
+              className="h-14 w-full rounded-xl border border-rose-200 bg-white px-3 text-zinc-900 outline-none transition duration-150 ease-out focus:border-rose-300 focus-visible:ring-2 focus-visible:ring-rose-200 focus-visible:ring-offset-1"
             />
           </div>
 
-          <div>
-            <label htmlFor="cycleLength" className="mb-1 block text-sm font-medium text-zinc-700">
+          <div className="space-y-2">
+            <label htmlFor="cycleLength" className="block text-center text-sm font-medium text-zinc-700">
               {t.labelCycleLength}
             </label>
             <input
@@ -470,12 +470,12 @@ export default function Home() {
                   setCycleLength(value);
                 }
               }}
-              className="w-full rounded-xl border border-rose-200 bg-white px-3 py-2.5 text-zinc-900 outline-none transition duration-150 ease-out focus:border-rose-300 focus-visible:ring-2 focus-visible:ring-rose-200 focus-visible:ring-offset-1"
+              className="h-14 w-full rounded-xl border border-rose-200 bg-white px-3 text-zinc-900 outline-none transition duration-150 ease-out focus:border-rose-300 focus-visible:ring-2 focus-visible:ring-rose-200 focus-visible:ring-offset-1"
             />
           </div>
 
-          <div>
-            <label htmlFor="periodDuration" className="mb-1 block text-sm font-medium text-zinc-700">
+          <div className="space-y-2">
+            <label htmlFor="periodDuration" className="block text-center text-sm font-medium text-zinc-700">
               {t.labelPeriodDuration}
             </label>
             <input
@@ -489,15 +489,15 @@ export default function Home() {
                   setPeriodDuration(value);
                 }
               }}
-              className="w-full rounded-xl border border-rose-200 bg-white px-3 py-2.5 text-zinc-900 outline-none transition duration-150 ease-out focus:border-rose-300 focus-visible:ring-2 focus-visible:ring-rose-200 focus-visible:ring-offset-1"
+              className="h-14 w-full rounded-xl border border-rose-200 bg-white px-3 text-zinc-900 outline-none transition duration-150 ease-out focus:border-rose-300 focus-visible:ring-2 focus-visible:ring-rose-200 focus-visible:ring-offset-1"
             />
           </div>
 
-          <div className="flex justify-end pt-1">
+          <div className="pt-1">
             <button
               type="button"
               onClick={handleReset}
-              className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-1.5 text-sm font-medium text-rose-700 transition duration-150 ease-out hover:scale-[1.02] hover:bg-rose-100 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300"
+              className="h-12 w-full rounded-xl border border-rose-200 bg-rose-50 px-3 text-sm font-medium text-rose-700 transition duration-150 ease-out hover:scale-[1.02] hover:bg-rose-100 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 sm:mx-auto sm:w-auto sm:min-w-40"
             >
               {t.reset}
             </button>
