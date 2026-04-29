@@ -451,7 +451,7 @@ export default function Home() {
               type="date"
               value={startDate}
               onChange={(event) => setStartDate(event.target.value)}
-              className="h-14 w-full rounded-xl border border-rose-200 bg-white px-3 text-zinc-900 outline-none transition duration-150 ease-out focus:border-rose-300 focus-visible:ring-2 focus-visible:ring-rose-200 focus-visible:ring-offset-1"
+              className="mx-auto h-14 w-full max-w-[280px] rounded-xl border border-rose-200 bg-white px-3 text-zinc-900 outline-none transition duration-150 ease-out focus:border-rose-300 focus-visible:ring-2 focus-visible:ring-rose-200 focus-visible:ring-offset-1"
             />
           </div>
 
@@ -470,7 +470,7 @@ export default function Home() {
                   setCycleLength(value);
                 }
               }}
-              className="h-14 w-full rounded-xl border border-rose-200 bg-white px-3 text-zinc-900 outline-none transition duration-150 ease-out focus:border-rose-300 focus-visible:ring-2 focus-visible:ring-rose-200 focus-visible:ring-offset-1"
+              className="mx-auto h-14 w-full max-w-[280px] rounded-xl border border-rose-200 bg-white px-3 text-zinc-900 outline-none transition duration-150 ease-out focus:border-rose-300 focus-visible:ring-2 focus-visible:ring-rose-200 focus-visible:ring-offset-1"
             />
           </div>
 
@@ -489,7 +489,7 @@ export default function Home() {
                   setPeriodDuration(value);
                 }
               }}
-              className="h-14 w-full rounded-xl border border-rose-200 bg-white px-3 text-zinc-900 outline-none transition duration-150 ease-out focus:border-rose-300 focus-visible:ring-2 focus-visible:ring-rose-200 focus-visible:ring-offset-1"
+              className="mx-auto h-14 w-full max-w-[280px] rounded-xl border border-rose-200 bg-white px-3 text-zinc-900 outline-none transition duration-150 ease-out focus:border-rose-300 focus-visible:ring-2 focus-visible:ring-rose-200 focus-visible:ring-offset-1"
             />
           </div>
 
