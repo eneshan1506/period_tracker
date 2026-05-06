@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import PWARegister from "@/components/PWARegister";
 import "./globals.css";
@@ -17,13 +17,17 @@ export const metadata: Metadata = {
   title: "Cycle Bloom",
   description: "Track your cycle with simple, gentle predictions.",
   manifest: "/manifest.json",
-  themeColor: "#d8b4fe",
   icons: {
     icon: [
-      { url: "/icons/icon-192.svg", sizes: "192x192", type: "image/svg+xml" },
-      { url: "/icons/icon-512.svg", sizes: "512x512", type: "image/svg+xml" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
+    apple: [{ url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" }],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#d8b4fe",
 };
 
 export default function RootLayout({

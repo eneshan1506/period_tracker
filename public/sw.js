@@ -1,5 +1,5 @@
 const CACHE_NAME = "cycle-bloom-v1";
-const URLS_TO_CACHE = ["/", "/manifest.json", "/icons/icon-192.svg", "/icons/icon-512.svg"];
+const URLS_TO_CACHE = ["/", "/manifest.json", "/icons/icon-192.png", "/icons/icon-512.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

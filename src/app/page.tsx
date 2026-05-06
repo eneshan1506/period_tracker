@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 
 const STORAGE_KEYS = {
   startDate: "periodTracker.startDate",
@@ -61,6 +62,8 @@ const translations = {
     legendPeriod: "🩸 Periodentag",
     legendOvulation: "🥚 Eisprungtag",
     disclaimer: "Diese Vorhersagen sind Schätzungen und keine medizinische Beratung.",
+    about: "Über Cycle Bloom",
+    privacyPolicy: "Datenschutz",
   },
   en: {
     loading: "Loading...",
@@ -97,6 +100,8 @@ const translations = {
     legendPeriod: "🩸 Period day",
     legendOvulation: "🥚 Ovulation day",
     disclaimer: "These predictions are estimates and not medical advice.",
+    about: "About Cycle Bloom",
+    privacyPolicy: "Privacy Policy",
   },
   tr: {
     loading: "Yükleniyor...",
@@ -133,6 +138,8 @@ const translations = {
     legendPeriod: "🩸 Adet günü",
     legendOvulation: "🥚 Yumurtlama günü",
     disclaimer: "Bu tahminler yaklaşık değerlerdir ve tıbbi tavsiye değildir.",
+    about: "Cycle Bloom hakkında",
+    privacyPolicy: "Gizlilik Politikası",
   },
 } as const;
 
@@ -592,6 +599,14 @@ export default function Home() {
 
         <p className="mt-7 text-center text-xs text-zinc-500 sm:mt-8">
           {t.disclaimer}
+        </p>
+        <p className="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-xs">
+          <Link href="/about" className="text-rose-600 underline-offset-4 hover:text-rose-700 hover:underline">
+            {t.about}
+          </Link>
+          <Link href="/privacy-policy" className="text-rose-600 underline-offset-4 hover:text-rose-700 hover:underline">
+            {t.privacyPolicy}
+          </Link>
         </p>
 
         <nav className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-md p-4">
