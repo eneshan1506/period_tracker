@@ -49,15 +49,12 @@ const translations = {
     labelCycleLength: "Durchschnittliche Zykluslänge (Tage)",
     labelPeriodDuration: "Durchschnittliche Periodendauer (Tage)",
     reset: "Zurücksetzen",
-    nextPeriodTitle: "Nächstes Periodendatum",
-    nextPeriodSubtitle: "Berechnet aus Startdatum + Zykluslänge",
-    ovulationTitle: "Geschätzter Eisprung",
-    ovulationSubtitle: "Geschätzt als 14 Tage vor der nächsten Periode",
+    calculate: "Berechnen",
     calendarTitle: "Kalender",
     tabsTracker: "Tracker",
     tabsCalendar: "Kalender",
-    emptyStateTitle: "Start tracking your cycle",
-    emptyStateText: "Select your last period date to begin",
+    emptyStateTitle: "Starte deine Zyklusverfolgung",
+    emptyStateText: "Wähle das Startdatum deiner letzten Periode aus.",
     startTag: "Start",
     legendPeriod: "🩸 Periodentag",
     legendOvulation: "🥚 Eisprungtag",
@@ -87,10 +84,7 @@ const translations = {
     labelCycleLength: "Average cycle length (days)",
     labelPeriodDuration: "Average period duration (days)",
     reset: "Reset",
-    nextPeriodTitle: "Next period date",
-    nextPeriodSubtitle: "Calculated by start date + cycle length",
-    ovulationTitle: "Estimated ovulation date",
-    ovulationSubtitle: "Estimated as 14 days before next period",
+    calculate: "Calculate",
     calendarTitle: "Calendar",
     tabsTracker: "Tracker",
     tabsCalendar: "Calendar",
@@ -125,15 +119,12 @@ const translations = {
     labelCycleLength: "Ortalama döngü uzunluğu (gün)",
     labelPeriodDuration: "Ortalama adet süresi (gün)",
     reset: "Sıfırla",
-    nextPeriodTitle: "Sonraki adet tarihi",
-    nextPeriodSubtitle: "Başlangıç tarihi + döngü uzunluğu ile hesaplanır",
-    ovulationTitle: "Tahmini yumurtlama tarihi",
-    ovulationSubtitle: "Bir sonraki adetten 14 gün önce olarak tahmin edilir",
+    calculate: "Hesapla",
     calendarTitle: "Takvim",
     tabsTracker: "Takip",
     tabsCalendar: "Takvim",
-    emptyStateTitle: "Start tracking your cycle",
-    emptyStateText: "Select your last period date to begin",
+    emptyStateTitle: "Döngünü takip etmeye başla",
+    emptyStateText: "Başlamak için son adet tarihini seç.",
     startTag: "başlangıç",
     legendPeriod: "🩸 Adet günü",
     legendOvulation: "🥚 Yumurtlama günü",
@@ -149,34 +140,10 @@ function addDays(date: Date, days: number): Date {
   return result;
 }
 
-function formatDate(date: Date, language: Language): string {
-  return new Intl.DateTimeFormat(LOCALE_BY_LANGUAGE[language], {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  }).format(date);
-}
-
 function parseInputDate(value: string): Date | null {
   if (!value) return null;
   const date = new Date(`${value}T00:00:00`);
   return Number.isNaN(date.getTime()) ? null : date;
-}
-
-type ResultCardProps = {
-  title: string;
-  value: string;
-  subtitle: string;
-};
-
-function ResultCard({ title, value, subtitle }: ResultCardProps) {
-  return (
-    <div className="rounded-2xl border border-pink-100 bg-white/95 p-5 text-center shadow-sm">
-      <p className="text-sm text-zinc-500">{title}</p>
-      <p className="mt-2 text-2xl font-semibold text-rose-900">{value}</p>
-      <p className="mt-1 text-sm text-zinc-500">{subtitle}</p>
-    </div>
-  );
 }
 
 type LanguageSwitcherProps = {
@@ -367,6 +334,10 @@ export default function Home() {
     setPeriodDuration(5);
   }
 
+  function handleCalculate() {
+    setActiveTab("calendar");
+  }
+
   function handleGetStarted() {
     localStorage.setItem(STORAGE_KEYS.onboardingCompleted, "true");
     setHasCompletedOnboarding(true);
@@ -431,7 +402,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-rose-100 via-violet-100 to-amber-50 px-4 py-6">
-      <main className="relative w-full max-w-md overflow-x-hidden rounded-3xl border border-white/70 bg-gradient-to-b from-white/95 to-rose-50/85 p-4 pb-24 shadow-xl backdrop-blur sm:p-6 sm:pb-24">
+      <main className="relative w-full max-w-md overflow-x-hidden rounded-3xl border border-white/70 bg-gradient-to-b from-white/95 to-rose-50/85 p-4 shadow-xl backdrop-blur sm:p-6">
         <header className="relative mb-4 flex h-[60px] items-center justify-between rounded-2xl border border-white/80 bg-white/70 px-3 shadow-sm">
           <p className="bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-base font-semibold text-transparent">
             Cycle Bloom 🌸
@@ -500,31 +471,23 @@ export default function Home() {
             />
           </div>
 
-          <div className="pt-1">
+          <div className="grid grid-cols-2 gap-3 pt-1">
             <button
               type="button"
               onClick={handleReset}
-              className="h-12 w-full rounded-xl border border-rose-200 bg-rose-50 px-3 text-sm font-medium text-rose-700 transition duration-150 ease-out hover:scale-[1.02] hover:bg-rose-100 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 sm:mx-auto sm:w-auto sm:min-w-40"
+              className="h-12 w-full rounded-xl border border-rose-200 bg-white/70 px-3 text-sm font-medium text-rose-700 transition duration-150 ease-out hover:scale-[1.02] hover:bg-rose-50 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300"
             >
               {t.reset}
             </button>
+            <button
+              type="button"
+              onClick={handleCalculate}
+              className="h-12 w-full rounded-xl bg-rose-500 px-3 text-sm font-semibold text-white shadow-sm transition duration-150 ease-out hover:scale-[1.02] hover:bg-rose-600 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300"
+            >
+              {t.calculate}
+            </button>
           </div>
         </section>
-
-        {hasStartDate && (
-            <section className="mt-4 grid gap-3 sm:mt-5">
-              <ResultCard
-                title={t.nextPeriodTitle}
-                value={nextPeriod ? formatDate(nextPeriod, language) : "-"}
-                subtitle={t.nextPeriodSubtitle}
-              />
-              <ResultCard
-                title={t.ovulationTitle}
-                value={ovulation ? formatDate(ovulation, language) : "-"}
-                subtitle={t.ovulationSubtitle}
-              />
-            </section>
-        )}
 
         {!hasStartDate && (
           <section className="mt-4 flex min-h-40 items-center justify-center rounded-2xl border border-violet-100 bg-gradient-to-b from-white/90 to-violet-50/80 p-7 text-center shadow-sm">
@@ -597,19 +560,7 @@ export default function Home() {
           )
         )}
 
-        <p className="mt-7 text-center text-xs text-zinc-500 sm:mt-8">
-          {t.disclaimer}
-        </p>
-        <p className="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-xs">
-          <Link href="/about" className="text-rose-600 underline-offset-4 hover:text-rose-700 hover:underline">
-            {t.about}
-          </Link>
-          <Link href="/privacy-policy" className="text-rose-600 underline-offset-4 hover:text-rose-700 hover:underline">
-            {t.privacyPolicy}
-          </Link>
-        </p>
-
-        <nav className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-md p-4">
+        <nav className="mt-6">
           <div className="grid grid-cols-2 gap-2 rounded-2xl border border-white/80 bg-white/90 p-1 shadow-lg backdrop-blur">
             <button
               type="button"
@@ -631,6 +582,20 @@ export default function Home() {
             </button>
           </div>
         </nav>
+
+        <footer className="mt-4 pb-1 text-center">
+          <p className="text-[11px] leading-relaxed text-zinc-500">
+            {t.disclaimer}
+          </p>
+          <p className="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px]">
+            <Link href="/about" className="text-rose-500 underline-offset-4 hover:text-rose-700 hover:underline">
+              {t.about}
+            </Link>
+            <Link href="/privacy-policy" className="text-rose-500 underline-offset-4 hover:text-rose-700 hover:underline">
+              {t.privacyPolicy}
+            </Link>
+          </p>
+        </footer>
       </main>
     </div>
   );
