@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Language = "de" | "en" | "tr";
 
@@ -88,15 +88,14 @@ const content = {
   },
 } as const;
 
-export default function PrivacyPolicy() {
-  const [language, setLanguage] = useState<Language>("de");
+function getSavedLanguage(): Language {
+  if (typeof window === "undefined") return "de";
+  const savedLanguage = localStorage.getItem(STORAGE_LANGUAGE_KEY);
+  return savedLanguage === "de" || savedLanguage === "en" || savedLanguage === "tr" ? savedLanguage : "de";
+}
 
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem(STORAGE_LANGUAGE_KEY);
-    if (savedLanguage === "de" || savedLanguage === "en" || savedLanguage === "tr") {
-      setTimeout(() => setLanguage(savedLanguage), 0);
-    }
-  }, []);
+export default function PrivacyPolicy() {
+  const [language, setLanguage] = useState<Language>(() => getSavedLanguage());
 
   function handleLanguageChange(nextLanguage: Language) {
     setLanguage(nextLanguage);
@@ -106,8 +105,8 @@ export default function PrivacyPolicy() {
   const t = content[language];
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-rose-100 via-violet-100 to-amber-50 px-4 py-6 text-zinc-800">
-      <div className="mx-auto w-full max-w-md rounded-3xl border border-white/70 bg-white/95 p-5 shadow-xl sm:p-6">
+    <main className="h-[100dvh] bg-gradient-to-br from-rose-100 via-violet-100 to-amber-50 px-4 py-6 text-zinc-800">
+      <div className="mx-auto h-[calc(100dvh-3rem)] w-full max-w-md overflow-hidden rounded-3xl border border-white/70 bg-white/95 p-5 shadow-xl sm:p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Link href="/" className="text-sm font-medium text-rose-700 underline-offset-4 hover:underline">
             {t.back}
@@ -118,7 +117,7 @@ export default function PrivacyPolicy() {
                 key={option.code}
                 type="button"
                 onClick={() => handleLanguageChange(option.code)}
-                className={`rounded-full px-3 py-1 font-medium transition ${
+                className={`min-h-11 rounded-full px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                   language === option.code ? "bg-rose-500 text-white" : "text-rose-700 hover:bg-rose-50"
                 }`}
               >

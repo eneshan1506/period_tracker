@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Language = "de" | "en" | "tr";
 
@@ -89,22 +89,19 @@ const content = {
 } as const;
 
 function getSavedLanguage(): Language {
+  if (typeof window === "undefined") return "de";
   const savedLanguage = localStorage.getItem(STORAGE_LANGUAGE_KEY);
   return savedLanguage === "en" || savedLanguage === "tr" || savedLanguage === "de" ? savedLanguage : "de";
 }
 
 export default function AboutPage() {
-  const [language, setLanguage] = useState<Language>("de");
-
-  useEffect(() => {
-    setTimeout(() => setLanguage(getSavedLanguage()), 0);
-  }, []);
+  const [language] = useState<Language>(() => getSavedLanguage());
 
   const t = content[language];
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-rose-100 via-violet-100 to-amber-50 px-4 py-6 text-zinc-800">
-      <div className="mx-auto w-full max-w-md rounded-3xl border border-white/70 bg-white/95 p-5 shadow-xl sm:p-6">
+    <main className="h-[100dvh] bg-gradient-to-br from-rose-100 via-violet-100 to-amber-50 px-4 py-6 text-zinc-800">
+      <div className="mx-auto h-[calc(100dvh-3rem)] w-full max-w-md overflow-hidden rounded-3xl border border-white/70 bg-white/95 p-5 shadow-xl sm:p-6">
         <Link href="/" className="text-sm font-medium text-rose-700 underline-offset-4 hover:underline">
           {t.back}
         </Link>
